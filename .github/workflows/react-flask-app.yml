@@ -67,7 +67,6 @@ jobs:
 
       - name: Test Supabase
         run: |
-          supabase init
           supabase db start
           supabase test db
 
