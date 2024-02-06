@@ -27,7 +27,8 @@ create table
         name varchar(255),
         details text,
         times_to_complete int,
-        additional_details_required boolean
+        additional_details_required boolean,
+				primary key (id)
     );
 
 create table
@@ -39,5 +40,5 @@ create table
         signee_id int,
         last_updated_at timestamp,
         additional_details jsonb,
-        primary
+        primary key (id)
     );
