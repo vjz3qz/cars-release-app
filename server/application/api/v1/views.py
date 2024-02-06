@@ -17,6 +17,10 @@ from application.controllers.upload_controller import (
 from application.services.blob_storage_service import get_file_url
 
 
+@v1.errorhandler(404)
+def not_found(e):
+    return render_template("index.html")
+
 @v1.route("/query-requirements", methods=["POST"])
 def query_requirements():
     try:

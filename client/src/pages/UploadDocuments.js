@@ -131,7 +131,7 @@ const UploadDocuments = () => {
 
       <FormFileDrop
         heading={"Upload a File"}
-        onFilesUploaded={(files) => setFormFiles(files)}
+        setFormFiles={setFormFiles}
         disabledCondition={sending}
       />
 

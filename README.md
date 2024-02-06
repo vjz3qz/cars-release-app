@@ -9,24 +9,13 @@ After downloading the code, set up the repository locally:
 ```console
 $ npm install --prefix client
 $ pipenv install && pipenv shell
-```
-
-Run the following commands to install upgrade and seed our database:
-
-```console
-$ cd server
-$ flask db upgrade
-$ python seed.py
-```
-
-This application has a RESTful Flask API, a React
-frontend using React Router for client-side routing, and PostgreSQL for the
-database.
-
-You can now run the app locally with:
-
-```console
 $ honcho start -f Procfile.dev
+```
+
+Create a `.env` file in the root of the project and add the following:
+
+```txt
+
 ```
 
 ## React Production Build
@@ -44,40 +33,6 @@ new features to a React application is something like this:
 
 ```console
 $ npm run build --prefix client
-```
-
-This command will generate a bundled and minified version of our React app in
-the `client/build` folder.
-
-**2.** Add static routes to Flask:
-
-If you check `app.py`, you will see that the following additions have been made
-since you last saw the bird API:
-
-```py
-app = Flask(
-    __name__,
-    static_url_path='',
-    static_folder='../client/build',
-    template_folder='../client/build'
-)
-
-...
-
-@app.errorhandler(404)
-def not_found(e):
-    return render_template("index.html")
-
-```
-
-These configure our Flask app for where to search for static and template files-
-both in our `client/build/` directory.
-
-**NOTE: Often, you may be setting up RESTful client-side routes, allowing people to go to `/birds` or `/birds/:id` to see all of the birds, or one at a time, respectively. These routes wouldn't be accessible on the frontend if they're already set up on the server (like they are in this app). To solve this, it's common to rewrite the backend routes so they all start with `/api/`, like `/api/birds` and `/api/birds/<int:id>` in order to free up the non-api urls to be used for client side routing. Just remember to also update your fetches to match backend urls.**
-
-**3.** Run the Flask server:
-
-```console
 $ gunicorn --chdir server app:app
 ```
 
@@ -113,7 +68,7 @@ Once you have saved these changes, navigate to the "Environment" tab and make
 sure the following values are set:
 
 ```txt
-DATABASE_URI=postgresql://{retrieve this from from render}
+FLASK_ENV=production
 ```
 
 ## TODO
