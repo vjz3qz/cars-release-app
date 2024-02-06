@@ -11,29 +11,6 @@ $ npm install --prefix client
 $ pipenv install && pipenv shell
 ```
 
-Create a `.env` file at root and add the following variable:
-
-```txt
-DATABASE_URI=postgresql://{retrieve this from from render}
-```
-
-We've installed a new package in this repository called `python-dotenv`. It
-allows us to set environment variables when we run our application using `.env`
-files. This is a nice midway point between setting invisible environment
-variables from the command line and writing hidden values into our code.
-
-To generate these environment variables, we just need to run the following
-command at the beginning of the module:
-
-```py
-# server/app.py
-
-from dotenv import load_dotenv
-load_dotenv()
-```
-
-After this, we can import any of our `.env` variables with `os.environ.get()`.
-
 Run the following commands to install upgrade and seed our database:
 
 ```console
