@@ -63,10 +63,11 @@ jobs:
 
       - uses: supabase/setup-cli@v1
         with:
-          version: 1.11.4
+          version: latest
 
       - name: Test Supabase
         run: |
+          supabase init
           supabase db start
           supabase test db
 
