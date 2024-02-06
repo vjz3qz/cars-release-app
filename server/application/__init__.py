@@ -5,6 +5,9 @@ import logging
 from application.services.database_service import init_db
 from dotenv import load_dotenv
 from flask import send_from_directory
+import os
+from flask import render_template
+
 
 
 def create_app():
@@ -33,6 +36,10 @@ def create_app():
             return send_from_directory(app.static_folder, path)
         else:
             return send_from_directory(app.static_folder, 'index.html')
+
+    @app.errorhandler(404)
+    def not_found(e):
+        return render_template("index.html")
 
 
     return app
