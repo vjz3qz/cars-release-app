@@ -1,0 +1,25 @@
+.result-container {
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.medical-label {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.codes {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.medical-neccesity {
+  margin-left: 3%;
+}

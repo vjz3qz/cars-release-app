@@ -1,0 +1,118 @@
+name: Test, Build and Deploy Full-Stack Python/React Application
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up the latest Python 3.x
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.x'
+
+    - name: Install pipenv and Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pipenv
+        pipenv install --dev
+
+    - name: Set up the latest Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 'latest' 
+
+    - name: Install Node.js dependencies
+      run: |
+        cd client
+        npm install
+
+    # - name: Lint React Application
+    #   run: |
+    #     cd client
+    #     npm run lint
+
+    - name: Test React Application
+      run: |
+        cd client
+        npm test
+
+    # - name: Lint Python Application
+    #   run: |
+    #     cd server
+    #     pipenv run flake8 .
+
+    - name: Test Python Application
+      run: |
+        cd server
+        pipenv run pytest
+      env:
+        DATABASE_URI: ${{ secrets.TEST_DATABASE_URI }}
+
+  build:
+    name: Build
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up the latest Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 'latest' 
+
+    - name: Install Node.js dependencies
+      run: |
+        cd client
+        npm install
+
+    - name: Build React Application
+      run: |
+        cd client
+        npm run build
+        
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: build
+    # Specify that this job should only run on push events to main, not on pull_request events
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+    - name: start deployment
+      uses: bobheadxi/deployments@v1
+      id: deployment
+      with:
+        step: start
+        token: ${{ secrets.GITHUB_TOKEN }}
+        env: release
+
+    - name: Render Deploy Action
+      uses: johnbeynon/render-deploy-action@v0.0.8
+            
+      with:
+        service-id: ${{ secrets.RENDER_SERVICE_ID }}
+        api-key: ${{ secrets.RENDER_API_KEY }}
+
+    - name: update deployment status
+      uses: bobheadxi/deployments@v1
+      if: always()
+      with:
+        step: finish
+        token: ${{ secrets.GITHUB_TOKEN }}
+        status: ${{ job.status }}
+        env: ${{ steps.deployment.outputs.env }}
+        deployment_id: ${{ steps.deployment.outputs.deployment_id }}

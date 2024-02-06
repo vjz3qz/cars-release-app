@@ -1,0 +1,19 @@
+.tab {
+  display: inline-block;
+  padding: 5px 15px; /* Smaller padding */
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 50px; /* High border-radius to make it ovular */
+  font-size: 0.8rem; /* Smaller font size */
+  margin: 0; /* Adjust as needed */
+  transition: all 0.3s ease; /* Smooth transition for interaction */
+  font-weight: 600;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.tab.active {
+  background-color: #f1f1f1;
+  color: black; /* Or any other color for active state */
+}

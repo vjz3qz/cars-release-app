@@ -1,0 +1,31 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+openai = "*"
+flask-cors = "*"
+python-dotenv = "*"
+langchain-community = "*"
+supabase = "*"
+langchain-core = "*"
+langchain = "*"
+langchain-openai = "*"
+langchainhub = "*"
+requests = "*"
+pypdf2 = "*"
+boto3 = "*"
+"pdfminer.six" = "*"
+unstructured = {extras = ["all-docs"], version = "*"}
+pydantic = "*"
+lxml = "*"
+gunicorn = "*"
+pytest = "*"
+honcho = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "*"
