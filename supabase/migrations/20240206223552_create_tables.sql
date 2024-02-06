@@ -27,7 +27,7 @@ create table
         name varchar(255),
         details text,
         times_to_complete int,
-        additional_details_required boolean,
+        additional_details_required boolean
     );
 
 create table
