@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../styles/PhoneCallAutomationLandingPage.css";
-import TextInput from "../ui/TextInput";
 import FormTextInput from "../ui/FormTextInput";
 import FormHeader from "../ui/FormHeader";
 import FormSubmitButton from "../ui/FormSubmitButton";
