@@ -2,19 +2,19 @@ from . import v1
 
 from flask import jsonify, request
 import logging
-from app.utils.handle_file_upload import extract_pdf_text
-from app.controllers.analyze_controller import (
+from application.utils.handle_file_upload import extract_pdf_text
+from application.controllers.analyze_controller import (
     analyze_prior_authorization_against_requirements,
 )
-from app.controllers.discovery_controller import (
+from application.controllers.discovery_controller import (
     fetch_procedure_requirements_by_insurance,
 )
-from app.controllers.call_controller import call_insurance_with_ai
-from app.controllers.upload_controller import (
+from application.controllers.call_controller import call_insurance_with_ai
+from application.controllers.upload_controller import (
     upload_file_url,
     upload_file_object,
 )
-from app.services.blob_storage_service import get_file_url
+from application.services.blob_storage_service import get_file_url
 
 
 @v1.route("/query-requirements", methods=["POST"])

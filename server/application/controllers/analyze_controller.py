@@ -3,9 +3,9 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.runnables import RunnableParallel
 from langchain.prompts import PromptTemplate
-from app.services.database_service import vector_db
-from app.services.nlp_service import embeddings, chat_model
-from app.services.blob_storage_service import get_file_url
+from application.services.database_service import vector_db
+from application.services.nlp_service import embeddings, chat_model
+from application.services.blob_storage_service import get_file_url
 import logging
 
 

@@ -4,10 +4,10 @@ import os
 import requests
 import tempfile
 
-from app.services.database_service import vector_db
-from app.services.nlp_service import embeddings
-from app.services.blob_storage_service import upload_file_to_blob_storage
-from app.utils.id_generator import generate_id
+from application.services.database_service import vector_db
+from application.services.nlp_service import embeddings
+from application.services.blob_storage_service import upload_file_to_blob_storage
+from application.utils.id_generator import generate_id
 import logging
 from mimetypes import guess_type
 
