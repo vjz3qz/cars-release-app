@@ -61,6 +61,15 @@ jobs:
         env:
           DATABASE_URI: ${{ secrets.TEST_DATABASE_URI }}
 
+      - uses: supabase/setup-cli@v1
+        with:
+          version: 1.11.4
+
+      - name: Test Supabase
+        run: |
+          supabase db start
+          supabase test db
+
   build:
     name: Build
     needs: test
