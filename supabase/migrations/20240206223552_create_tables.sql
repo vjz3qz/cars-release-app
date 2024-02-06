@@ -1,4 +1,7 @@
 create table
+    if not exists roles (id serial, name varchar(255), primary key (id));
+
+create table
     if not exists users (
         id serial,
         first_name varchar(255),
@@ -9,9 +12,6 @@ create table
         primary key (id),
         foreign key (role_id) references roles (id)
     );
-
-create table
-    if not exists roles (id serial, name varchar(255), primary key (id));
 
 create table
     if not exists checklists (
