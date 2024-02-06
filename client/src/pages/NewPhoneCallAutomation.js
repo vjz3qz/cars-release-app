@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 
 // Components
-import TextInput from "../ui/TextInput.js";
 import FormTextInput from "../ui/FormTextInput.js";
 import FormHeader from "../ui/FormHeader.js";
 

@@ -9,7 +9,7 @@ const FileDrop = ({ onFilesUploaded, disabledCondition }) => {
   // Call onFilesUploaded whenever uploadedFiles changes
   useEffect(() => {
     onFilesUploaded(uploadedFiles);
-  }, [uploadedFiles]);
+  }, [onFilesUploaded, uploadedFiles]);
 
   const handleDragEnter = (e) => {
     if (disabledCondition) return;

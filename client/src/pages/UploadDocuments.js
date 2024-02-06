@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 
 // Components
-import TextInput from "../ui/TextInput.js";
-import FileDrop from "../ui/FileDrop.js";
-import Select from "react-select";
-import DocumentDisplay from "../ui/DocumentDisplay.js";
 import FormDropdown from "../ui/FormDropDown.js";
 import FormTextInput from "../ui/FormTextInput.js";
 import FormFileDrop from "../ui/FormFileDrop.js";
@@ -20,14 +16,14 @@ const UploadDocuments = () => {
   const [formFiles, setFormFiles] = useState([]);
   const [sending, setSending] = useState(false);
   const [fileId, setFileId] = useState("");
-  const [fileUrl, setFileUrl] = useState("");
+  const [, setFileUrl] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  function resetForm() {
-    setFormFiles([]); // Reset files
-    setFormUrl(""); // Reset URL
-    setFormInsuranceProvider(""); // Reset selected option
-  }
+  // function resetForm() {
+  //   setFormFiles([]); // Reset files
+  //   setFormUrl(""); // Reset URL
+  //   setFormInsuranceProvider(""); // Reset selected option
+  // }
   const handleSend = async () => {
     // Create the request body using actual values
     if (formFiles.length === 0 && formUrl === "") {

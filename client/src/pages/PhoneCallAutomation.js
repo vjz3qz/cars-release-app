@@ -8,7 +8,7 @@ import FormSubmitButton from "../ui/FormSubmitButton";
 import { useNavigate } from "react-router-dom";
 
 const PhoneCallAutomation = () => {
-  const [callId, setCallId] = useState("");
+  const [, setCallId] = useState("");
   const navigate = useNavigate();
   const goToPhoneCallAutomationPage = () => {
     navigate("/new-phone-call-automation"); // Replace with your actual path

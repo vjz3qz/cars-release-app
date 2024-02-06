@@ -24,13 +24,13 @@ export default function RequirementsAnalysis() {
   const [sending, setSending] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  function resetForm() {
-    setInsuranceProvider(""); // Reset insurance provider
-    setProcedure(""); // Reset procedure
-    setCPTCode(""); // Reset CPT code
-    setFormFiles([]); // Reset files
-    setAdditionalInformation(""); // Reset query
-  }
+  // function resetForm() {
+  //   setInsuranceProvider(""); // Reset insurance provider
+  //   setProcedure(""); // Reset procedure
+  //   setCPTCode(""); // Reset CPT code
+  //   setFormFiles([]); // Reset files
+  //   setAdditionalInformation(""); // Reset query
+  // }
 
   async function handleSend() {
     if (formFiles.length === 0) {

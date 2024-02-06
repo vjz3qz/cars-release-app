@@ -18,13 +18,13 @@ const GuidelineDiscovery = () => {
   const [sourceDocument, setSourceDocument] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  function resetForm() {
-    setInsuranceProvider(""); // Reset insurance provider
-    setProcedure(""); // Reset procedure
-    setCPTCode(""); // Reset CPT code
-    setHPI(""); // Reset HPI
-    setAdditionalInformation(""); // Reset additionalInformation
-  }
+  // function resetForm() {
+  //   setInsuranceProvider(""); // Reset insurance provider
+  //   setProcedure(""); // Reset procedure
+  //   setCPTCode(""); // Reset CPT code
+  //   setHPI(""); // Reset HPI
+  //   setAdditionalInformation(""); // Reset additionalInformation
+  // }
 
   async function handleSearch() {
     if (!insuranceProvider) {
