@@ -4,6 +4,7 @@ from application.api.v1 import v1 as v1_blueprint
 import logging
 from application.services.database_service import init_db
 from dotenv import load_dotenv
+from flask import send_from_directory
 
 
 def create_app():
@@ -22,5 +23,16 @@ def create_app():
     # logging.basicConfig(level=logging.INFO)
     # Registering the v1 blueprint
     app.register_blueprint(v1_blueprint, url_prefix="/api/v1")
+
+
+    # Add this at the end of your `create_app` function or after defining all other routes
+    @app.route('/', defaults={'path': ''})
+    @app.route('/<path:path>')
+    def serve(path):
+        if path != "" and os.path.exists(app.static_folder + '/' + path):
+            return send_from_directory(app.static_folder, path)
+        else:
+            return send_from_directory(app.static_folder, 'index.html')
+
 
     return app

@@ -113,9 +113,10 @@ export default function RequirementsAnalysis() {
         disabledCondition={sending}
         numRows={1}
       />
+
       <FormFileDrop
         heading={"Upload the Prior Authorization Request Files"}
-        onFilesUploaded={(files) => setFormFiles(files)}
+        setFormFiles={setFormFiles}
         disabledCondition={sending}
       />
 

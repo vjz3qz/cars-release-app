@@ -33,6 +33,7 @@ new features to a React application is something like this:
 
 ```console
 $ npm run build --prefix client
+$ pipenv install && pipenv shell
 $ gunicorn --chdir server app:app
 ```
 
