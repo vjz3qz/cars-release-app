@@ -11,49 +11,42 @@ permissions:
   deployments: write
 
 jobs:
-  test:
-    name: Test
+  test-build-react:
+    name: Test and Build React Application
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
+      - name: Set up the latest Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "latest"
+      - name: Install Node.js dependencies
+        run: |
+          cd client
+          npm install
+      - name: Test React Application
+        run: |
+          cd client
+          npm test
+      - name: Build React Application
+        run: |
+          cd client
+          npm run build
 
+  test-flask:
+    name: Test Flask Application
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
       - name: Set up the latest Python 3.11
         uses: actions/setup-python@v3
         with:
           python-version: "3.11"
-
       - name: Install pipenv and Python dependencies
         run: |
           python -m pip install --upgrade pip
           pip install pipenv
           pipenv install --dev
-
-      - name: Set up the latest Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "latest"
-
-      - name: Install Node.js dependencies
-        run: |
-          cd client
-          npm install
-
-      # - name: Lint React Application
-      #   run: |
-      #     cd client
-      #     npm run lint
-
-      - name: Test React Application
-        run: |
-          cd client
-          npm test
-
-      # - name: Lint Python Application
-      #   run: |
-      #     cd server
-      #     pipenv run flake8 .
-
       - name: Test Python Application
         run: |
           cd server
@@ -61,42 +54,23 @@ jobs:
         env:
           DATABASE_URI: ${{ secrets.TEST_DATABASE_URI }}
 
+  test-supabase:
+    name: Test Supabase
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
       - uses: supabase/setup-cli@v1
         with:
           version: latest
-
       - name: Test Supabase
         run: |
           supabase db start
           supabase test db
 
-  build:
-    name: Build
-    needs: test
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up the latest Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "latest"
-
-      - name: Install Node.js dependencies
-        run: |
-          cd client
-          npm install
-
-      - name: Build React Application
-        run: |
-          cd client
-          npm run build
-
   # deploy:
   #   name: Deploy
   #   runs-on: ubuntu-latest
-  #   needs: build
+  #   needs: [test-build-react, test-flask, test-supabase]
   #   # Specify that this job should only run on push events to main, not on pull_request events
   #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
   #   steps:

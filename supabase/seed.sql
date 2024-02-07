@@ -1,3 +1,13 @@
+-- Seed data for roles table
+INSERT INTO
+    roles (name)
+VALUES
+    ('Observer'),
+    ('Collector'),
+    ('Released'),
+    ('Preceptor'),
+    ('Admin');
+
 -- Seed data for users table
 INSERT INTO
     users (first_name, last_name, email, password, role_id)
@@ -31,16 +41,6 @@ VALUES
         'password123',
         5
     );
-
--- Seed data for roles table
-INSERT INTO
-    roles (name)
-VALUES
-    ('Observer'),
-    ('Collector'),
-    ('Released'),
-    ('Preceptor'),
-    ('Admin');
 
 -- Seed data for checklists table
 INSERT INTO
