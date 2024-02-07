@@ -28,7 +28,7 @@ create table
         details text,
         times_to_complete int,
         additional_details_required boolean,
-				primary key (id)
+        primary key (id)
     );
 
 create table
